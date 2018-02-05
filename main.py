@@ -15,4 +15,4 @@ appname = redditConfig["appname"]
 
 # Create a Reddit oauth client that can access the API
 client = Client(username, password, clientid, clientsecret, appname)
-print(client.token)
+print(client.getSavedPosts())
