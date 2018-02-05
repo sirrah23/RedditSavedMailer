@@ -1,3 +1,10 @@
+"""
+Gets a list of saved posts for the configured user from
+Reddit and emails them to a specified destination address.
+
+TODO: Email
+"""
+
 import os, configparser
 from client import Client
 

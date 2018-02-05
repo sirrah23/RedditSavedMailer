@@ -1,3 +1,7 @@
+"""
+Contains a Client object that interfaces with Reddit
+via a set of user & app credentials.
+"""
 import requests
 
 class Client:
@@ -10,6 +14,10 @@ class Client:
             raise ValueError("Bad credentials, unable to retrieve token")
 
     def generateToken(self, username, password, clientid, clientsecret, appname):
+        """
+        Obtain an authorization token from Reddit given a set of credentials
+        for a user and their app.
+        """
         client_auth = requests.auth.HTTPBasicAuth(clientid, clientsecret)
         post_data = {"grant_type": "password", "username": username, "password": password}
         headers = {"User-Agent": "{} by {}".format(appname, username)}
@@ -23,11 +31,22 @@ class Client:
             return response.json()["access_token"]
 
     def getSavedPosts(self):
+        """
+        Get a list of 100 saved posts using the token that
+        was obtained from Reddit.
+        """
         headers = {"Authorization": "bearer {}".format(self.token),
                    "User-Agent": "{} by {}".format(self.appname, self.username)}
         response = requests.get("https://oauth.reddit.com/user/{}/saved?limit=100".format(self.username),
                                 headers=headers)
         def extractJSONData(j):
+            """
+            Inner function to extract data from each saved-posts JSON blob. We want
+            to extract only the data that we care about for each item:
+            - Links
+            - Titles
+            - Subreddits
+            """
             j = j["data"]
             title_field = "title" if "title" in j else "link_title"
             permalink_field = "permalink"
