@@ -11,7 +11,7 @@ from mailer import sendEmail
 
 # Read the configuration file containing credentials
 config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), "config.ini"))
+config.read(os.path.join(os.path.dirname(__file__), "..", "config.ini"))
 redditConfig = config["Reddit"]
 emailConfig = config["Email"]
 
