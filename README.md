@@ -11,8 +11,8 @@ Create a new app in your Reddit account preferences
 and obtain the client id and client secret.
 
 Once you have cloned the repository you need to create
-a `config.ini` file in the root directory of the project
-with the following content:
+a `config.ini` file at the root of the project
+containing the following content:
 
 ```ini
 [Reddit]
@@ -26,8 +26,7 @@ destination = <email to send post to>
 ```
 
 # Running the script
-Make sure you have pipenv installed on your system Then you
-can do:
+Install pipenv onto your system. Once you do that you can run:
 
 ```python
 pipenv run python src/main.py
